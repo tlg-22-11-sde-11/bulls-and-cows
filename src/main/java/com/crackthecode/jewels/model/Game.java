@@ -29,6 +29,7 @@ public class Game {
         completed = true;
         won = true;
         rubyTracker = 5;
+        //todo pass the game information to the stats manager!
       } else {
         char[] cipherCharArray = cipher.getCurrentCipher().toCharArray(); //TODO Make sure this works with how Cipher class is written
         char[] guessCharArray = guess.getCurrentGuess().toCharArray();
