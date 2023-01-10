@@ -1,7 +1,6 @@
 package com.crackthecode.jewels.model;
 
 import java.util.LinkedHashSet;
-import java.util.Locale;
 import java.util.Set;
 
 public class Guess {
