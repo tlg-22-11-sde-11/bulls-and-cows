@@ -1,8 +1,7 @@
 package com.crackthecode.jewels.model;
 
-import java.io.PrintStream;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.Locale;
 import java.util.Set;
 
 public class Guess {
@@ -28,13 +27,14 @@ public class Guess {
     if(currentGuess == null || currentGuess.length() != GUESS_LENGTH) {
       throw new IllegalArgumentException(String.format(INVALID_INPUT_LENGTH_MESSAGE_FORMAT,currentGuess));
     }
-    if(!currentGuess.matches(pool)) {
+    String guess = currentGuess.toLowerCase();
+    if(!guess.matches(pool)) {
       throw new IllegalArgumentException(String.format(INVALID_CHARACTERS_MESSAGE_FORMAT, currentGuess, pool));
     }
-    if(!guessSet.add(currentGuess)) {
+    if(!guessSet.add(guess)) {
       throw new IllegalArgumentException(String.format(DUPLICATE_GUESS_MESSAGE_FORMAT, currentGuess));
     }
-    this.currentGuess = currentGuess;
+    this.currentGuess = guess;
   }
 
   public Set<String> getGuessSet() {
