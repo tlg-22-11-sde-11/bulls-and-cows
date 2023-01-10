@@ -39,6 +39,7 @@ public class Game {
           if(cipherCharArray[i] == guessCharArray[i]) {
             rubyTracker++;
             cipherCharArray[i] = '*';
+            guessCharArray[i] = '@';
           }
         }
 
