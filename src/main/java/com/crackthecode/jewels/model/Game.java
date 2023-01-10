@@ -6,6 +6,8 @@ import java.util.List;
 public class Game {
 
   public static final int MAX_NUMBER_OF_TRIES = 15;
+  public static final char GUESS_PLACEHOLDER_CHARACTER = '@';
+  public static final char CIPHER_PLACEHOLDER_CHARACTER = '*';
   private final StatisticsManager stats;
   private final Cipher cipher;
   private List<Integer> ruby = new ArrayList<>();
@@ -25,7 +27,7 @@ public class Game {
       int rubyTracker = 0;
       int pearlTracker = 0;
       guessCounter++;
-      if (cipher.equals(guess)) { //TODO Make sure this works with how Cipher class is written
+      if (cipher.getCurrentCipher().equals(guess.getCurrentGuess())) { //TODO Make sure this works with how Cipher class is written
         completed = true;
         won = true;
         rubyTracker = 5;
@@ -34,21 +36,21 @@ public class Game {
         char[] cipherCharArray = cipher.getCurrentCipher().toCharArray(); //TODO Make sure this works with how Cipher class is written
         char[] guessCharArray = guess.getCurrentGuess().toCharArray();
 
-        //checks for exact matches:
+        //checks for exact matches and replaces characters with placeholder if matched:
         for(int i = 0; i < Guess.GUESS_LENGTH; i++) {
           if(cipherCharArray[i] == guessCharArray[i]) {
             rubyTracker++;
-            cipherCharArray[i] = '*';
-            guessCharArray[i] = '@';
+            cipherCharArray[i] = CIPHER_PLACEHOLDER_CHARACTER;
+            guessCharArray[i] = GUESS_PLACEHOLDER_CHARACTER;
           }
         }
 
-        //checks for matched characters in wrong location:
+        //checks for matched characters in wrong location and replaces cipher characters with placeholder if matched:
         for(char guessChar : guessCharArray) {
           for(int i = 0; i < Guess.GUESS_LENGTH; i++) {
             if(guessChar == cipherCharArray[i]) {
               pearlTracker++;
-              cipherCharArray[i] = '*';
+              cipherCharArray[i] = CIPHER_PLACEHOLDER_CHARACTER;
             }
           }
         }
