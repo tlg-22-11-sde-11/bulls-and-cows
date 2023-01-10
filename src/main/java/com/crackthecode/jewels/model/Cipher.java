@@ -23,7 +23,10 @@ public class Cipher {
 
    // constructors
 
-  public Cipher(int difficultyLevel) {
+  public Cipher(int difficultyLevel) throws IllegalArgumentException {
+    if (difficultyLevel != 1 && difficultyLevel != 2 && difficultyLevel != 3) {
+      throw new IllegalArgumentException("Must choose Levels 1, 2, or 3.");
+    }
     this.difficultyLevel = difficultyLevel;
     }
 
@@ -59,6 +62,8 @@ public class Cipher {
   public String getPool() {
     return pool;
   }
+
+
 
   // helper methods
 
