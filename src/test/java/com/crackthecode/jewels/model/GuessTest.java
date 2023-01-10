@@ -4,6 +4,6 @@ import org.junit.jupiter.api.Test;
 
 public class GuessTest {
 
-//to be completed when we have enough classes to test the Guess class
+  // TODO to be completed after model classes are complete
 
 }
