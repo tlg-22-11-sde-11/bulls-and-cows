@@ -38,7 +38,7 @@ public class StatisticsManager {
           "Success Rate: " + String.format("%.2f", successRate * 100) + "%",
           "Guess Average: " + String.format("%.2f", guessAvg)};
       // join the strings with newline separator
-      return "Game Statistics:\n" + String.join("\n", stats);
+      return "All Time Statistics:\n" + String.join("\n", stats);
     }
 
   }
