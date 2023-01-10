@@ -28,13 +28,12 @@ public class Game {
       int rubyTracker = 0;
       int pearlTracker = 0;
       guessCounter++;
-      if (cipher.getCurrentCipher().equals(guess.getCurrentGuess())) { //TODO Make sure this works with how Cipher class is written
-        completed = true;
+      if (cipher.getCurrentCipher().equals(guess.getCurrentGuess())) {
         won = true;
         rubyTracker = Guess.GUESS_LENGTH;
         stats.playGame(won, guessCounter);
       } else {
-        char[] cipherCharArray = cipher.getCurrentCipher().toCharArray(); //TODO Make sure this works with how Cipher class is written
+        char[] cipherCharArray = cipher.getCurrentCipher().toCharArray();
         char[] guessCharArray = guess.getCurrentGuess().toCharArray();
 
         //checks for exact matches and replaces characters with placeholder if matched:
