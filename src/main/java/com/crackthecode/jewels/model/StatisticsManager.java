@@ -27,18 +27,11 @@ public class StatisticsManager {
     guessAvg = (guessAvg * (win + loss) + numOfGuess) / (win + loss
         + 1); // this keeps score of the number of guess on average
 
-    @Override
-    public String toString() { //this method shows the stats for the player to see
-      StringBuilder sb = new StringBuilder();
-      sb.append("Game Statistics: ")
-          .append("\nWins: " + win)
-          .append("\nLosses:" + loss)
-          .append("\nSuccess Rate: " + String.format("%.2f", sucessRate * 100)
-              + "%") // append success rate in a percentage format so multply by 100
-          .append("\nGuess Average: " + String.format("%.2f",
-              guessAvg)); //guess average formated in a 2 point decimal
-      return sb.toString();
-    }
+    public String toString(); {
+    // array of strings representing statistics
+    String[] stats = {"Wins: " + win, "Losses: " + loss, "Success Rate: " + String.format("%.2f", sucessRate*100) + "%", "Guess Average: " + String.format("%.2f", guessAvg)};
+    // join the strings with newline separator
+    return "Game Statistics:\n" + String.join("\n", stats);
   }
 
 }
