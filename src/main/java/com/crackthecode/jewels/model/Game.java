@@ -8,6 +8,7 @@ public class Game {
   public static final int MAX_NUMBER_OF_TRIES = 15;
   public static final char GUESS_PLACEHOLDER_CHARACTER = '@';
   public static final char CIPHER_PLACEHOLDER_CHARACTER = '*';
+
   private final StatisticsManager stats;
   private final Cipher cipher;
   private List<Integer> ruby = new ArrayList<>();
@@ -30,8 +31,8 @@ public class Game {
       if (cipher.getCurrentCipher().equals(guess.getCurrentGuess())) { //TODO Make sure this works with how Cipher class is written
         completed = true;
         won = true;
-        rubyTracker = 5;
-        //todo pass the game information to the stats manager!
+        rubyTracker = Guess.GUESS_LENGTH;
+        stats.playGame(won, guessCounter);
       } else {
         char[] cipherCharArray = cipher.getCurrentCipher().toCharArray(); //TODO Make sure this works with how Cipher class is written
         char[] guessCharArray = guess.getCurrentGuess().toCharArray();
@@ -59,10 +60,11 @@ public class Game {
       pearl.add(pearlTracker);
     } else {
       completed = true;
+      won = false;
+      stats.playGame(won, guessCounter);
     }
     return won;
   }
-
 
   public List<Integer> getRuby() {
     return ruby;
