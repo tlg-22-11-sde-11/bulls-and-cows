@@ -26,7 +26,7 @@ public class StatisticsManager {
     guessAvg = (guessAvg * (win + loss) + numOfGuess) / (win + loss + 1); // this keeps score of the number of guess on average
 
 @Override
-    public String toString(); { //this method shows the stats for the player to see
+    public String toString( ); { //this method shows the stats for the player to see
       return "Wins:" + win + "Losses: " + loss + "Success Rate: " + sucessRate + "Guess Avg: "
           + guessAvg;
     }
