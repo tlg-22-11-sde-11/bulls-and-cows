@@ -7,8 +7,8 @@ import java.util.List;
 
 public class GameView {
 
-  public static final String RUBY_AND_PEARL_DEFINITION = "A ruby is awarded for each correct character in the correct position. %n" +
-  "A pearl is awarded for each correct character in the wrong position.";
+  public static final String RUBY_AND_PEARL_DEFINITION = "A ruby is awarded when you have chosen a correct character and it is in the correct position.\n"
+      + "A pearl is awarded when you have chosen a correct character but it is in the wrong position. \n";
 
   public String getGameBoard(Guess guess, Game game) {
     StringBuilder builder = new StringBuilder();
