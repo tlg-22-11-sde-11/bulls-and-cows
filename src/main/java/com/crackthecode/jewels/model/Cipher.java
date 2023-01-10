@@ -1,26 +1,22 @@
 package com.crackthecode.jewels.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Cipher {
 
   //Constants
 
   public static final String LEVEL_ONE_POOL = "0123456789";
-  String LEVEL_TWO_POOL = "abcdefghijklmnopqrstuvwxyz";
-  String LEVEL_THREE_POOL = "0123456789abcdefghijklmnopqrstuvwxyz";
-  Set<String> sessionCipherSet = new HashSet<>();
+  public static final String LEVEL_TWO_POOL = "abcdefghijklmnopqrstuvwxyz";
+  public static final String LEVEL_THREE_POOL = "0123456789abcdefghijklmnopqrstuvwxyz";
+  private final Set<String> sessionCipherSet = new HashSet<>();
 
   //fields
 
-  int difficultyLevel;
-  String currentCipher;
+  private final int difficultyLevel;
+  private String currentCipher;
   private String pool;
 
 
@@ -35,7 +31,7 @@ public class Cipher {
 
   private void assignPool() {
     if (difficultyLevel == 1) {
-      pool = LEVEL_ONE_POOL.toLowerCase();
+      pool = LEVEL_ONE_POOL;
     } else if (difficultyLevel == 2) {
       pool = LEVEL_TWO_POOL.toLowerCase();
     } else {
@@ -44,25 +40,12 @@ public class Cipher {
   }
 
     public void generateCipher() {
-      List<Character> characters  = pool
-          .chars()
-          .mapToObj(c -> (char) c)
-          .collect(Collectors.toList());
 
-      Random rng = new Random();
-      Collections.shuffle(characters, rng);
-
-      this.currentCipher = characters
-          .stream()
-          .limit(5)
-          .map(Object::toString)
-          .collect(Collectors.joining());
-
-      sessionCipherSet.add(currentCipher);
-    }
-
-    public boolean checkEquals(Guess guess) {
-    return currentCipher.equals(guess.getCurrentGuess());
+      do {
+        this.currentCipher = getRandomCharacter() + getRandomCharacter() +
+            getRandomCharacter() + getRandomCharacter() + getRandomCharacter();
+      }
+      while (!sessionCipherSet.add(currentCipher));
     }
 
 
@@ -75,5 +58,12 @@ public class Cipher {
 
   public String getPool() {
     return pool;
+  }
+
+  // helper methods
+
+  private String getRandomCharacter() {
+    Random rnd = new Random();
+    return Character.toString(pool.toCharArray()[rnd.nextInt(pool.length())]);
   }
 }
