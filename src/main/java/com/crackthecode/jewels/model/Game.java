@@ -11,8 +11,8 @@ public class Game {
 
   private final StatisticsManager stats;
   private final Cipher cipher;
-  private List<Integer> ruby = new ArrayList<>();
-  private List<Integer> pearl = new ArrayList<>();
+  private final List<Integer> ruby = new ArrayList<>();
+  private final List<Integer> pearl = new ArrayList<>();
   private boolean completed;
   private boolean won;
   private int guessCounter;
@@ -23,52 +23,58 @@ public class Game {
     this.cipher = cipher;
   }
 
-  public boolean checkGuess(Guess guess) {
+  public void checkGuess(Guess guess) {
     if (guessCounter < MAX_NUMBER_OF_TRIES) {
       int rubyTracker = 0;
       int pearlTracker = 0;
       guessCounter++;
       if (cipher.getCurrentCipher().equals(guess.getCurrentGuess())) {
-        won = true;
         rubyTracker = Guess.GUESS_LENGTH;
-        completed = true;
-        stats.playGame(won, guessCounter);
+        updateGameStats(true, guessCounter);
       } else {
         if(guessCounter == 15) {
-          completed = true;
-          won = false;
-          stats.playGame(won, guessCounter);
+          updateGameStats(false, guessCounter);
         }
         char[] cipherCharArray = cipher.getCurrentCipher().toCharArray();
         char[] guessCharArray = guess.getCurrentGuess().toCharArray();
 
-        //checks for exact matches and replaces characters with placeholder if matched:
-        for(int i = 0; i < Guess.GUESS_LENGTH; i++) {
-          if(cipherCharArray[i] == guessCharArray[i]) {
-            rubyTracker++;
-            cipherCharArray[i] = CIPHER_PLACEHOLDER_CHARACTER;
-            guessCharArray[i] = GUESS_PLACEHOLDER_CHARACTER;
-          }
-        }
-
-        //checks for matched characters in wrong location and replaces cipher characters with placeholder if matched:
-        for(char guessChar : guessCharArray) {
-          for(int i = 0; i < Guess.GUESS_LENGTH; i++) {
-            if(guessChar == cipherCharArray[i]) {
-              pearlTracker++;
-              cipherCharArray[i] = CIPHER_PLACEHOLDER_CHARACTER;
-            }
-          }
-        }
+        rubyTracker = getRubyTracker(rubyTracker, cipherCharArray, guessCharArray);
+        pearlTracker = getPearlTracker(pearlTracker, cipherCharArray, guessCharArray);
       }
       ruby.add(rubyTracker);
       pearl.add(pearlTracker);
     } else {
-      completed = true;
-      won = false;
-      stats.playGame(won, guessCounter);
+      updateGameStats(false, guessCounter);
     }
-    return won;
+  }
+
+  private void updateGameStats(boolean won, int guessCounter) {
+    this.won = won;
+    this.completed = true;
+    stats.playGame(won, guessCounter);
+  }
+
+  private int getPearlTracker(int pearlTracker, char[] cipherCharArray, char[] guessCharArray) {
+    for(char guessChar : guessCharArray) {
+      for(int i = 0; i < Guess.GUESS_LENGTH; i++) {
+        if(guessChar == cipherCharArray[i]) {
+          pearlTracker++;
+          cipherCharArray[i] = CIPHER_PLACEHOLDER_CHARACTER;
+        }
+      }
+    }
+    return pearlTracker;
+  }
+
+  private int getRubyTracker(int rubyTracker, char[] cipherCharArray, char[] guessCharArray) {
+    for(int i = 0; i < Guess.GUESS_LENGTH; i++) {
+      if(cipherCharArray[i] == guessCharArray[i]) {
+        rubyTracker++;
+        cipherCharArray[i] = CIPHER_PLACEHOLDER_CHARACTER;
+        guessCharArray[i] = GUESS_PLACEHOLDER_CHARACTER;
+      }
+    }
+    return rubyTracker;
   }
 
   public List<Integer> getRuby() {
