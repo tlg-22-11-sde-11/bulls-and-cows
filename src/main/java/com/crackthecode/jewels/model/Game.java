@@ -31,6 +31,7 @@ public class Game {
       if (cipher.getCurrentCipher().equals(guess.getCurrentGuess())) {
         won = true;
         rubyTracker = Guess.GUESS_LENGTH;
+        completed = true;
         stats.playGame(won, guessCounter);
       } else {
         char[] cipherCharArray = cipher.getCurrentCipher().toCharArray();
