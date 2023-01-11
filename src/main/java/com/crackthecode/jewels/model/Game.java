@@ -28,7 +28,7 @@ public class Game {
     if (guessCounter < MAX_NUMBER_OF_TRIES) {
       cipherCharArray = cipher.getCurrentCipher().toCharArray();
       guessCharArray = guess.getCurrentGuess().toCharArray();
-      int rubyTracker = 0;
+      int rubyTracker;
       int pearlTracker = 0;
       guessCounter++;
       if (cipher.getCurrentCipher().equals(guess.getCurrentGuess())) {
