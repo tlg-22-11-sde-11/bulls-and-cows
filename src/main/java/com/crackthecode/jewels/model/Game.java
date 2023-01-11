@@ -74,6 +74,9 @@ public class Game {
     return pearl;
   }
 
+  public boolean isWon() {
+    return won;
+  }
   public boolean isCompleted() {
     return completed;
   }

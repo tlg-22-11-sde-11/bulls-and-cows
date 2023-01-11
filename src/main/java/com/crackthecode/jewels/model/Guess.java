@@ -4,6 +4,7 @@ import com.crackthecode.jewels.model.exceptions.DuplicateGuessException;
 import com.crackthecode.jewels.model.exceptions.InvalidGuessException;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 public class Guess {
 
@@ -17,7 +18,7 @@ public class Guess {
   private final String pool;
 
   public Guess(Cipher cipher) {
-    this.pool = cipher.getPool();
+    this.pool = '[' + cipher.getPool() + "]+";
   }
 
   public String getCurrentGuess() {
@@ -29,7 +30,7 @@ public class Guess {
       throw new InvalidGuessException(String.format(INVALID_INPUT_LENGTH_MESSAGE_FORMAT,currentGuess));
     }
     String guess = currentGuess.toLowerCase();
-    if(!guess.matches(pool)) {
+    if(!Pattern.compile(pool).matcher(guess).find()) {
       throw new InvalidGuessException(String.format(INVALID_CHARACTERS_MESSAGE_FORMAT, currentGuess, pool));
     }
     if(!guessSet.add(guess)) {
