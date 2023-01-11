@@ -34,6 +34,11 @@ public class Game {
         completed = true;
         stats.playGame(won, guessCounter);
       } else {
+        if(guessCounter == 15) {
+          completed = true;
+          won = false;
+          stats.playGame(won, guessCounter);
+        }
         char[] cipherCharArray = cipher.getCurrentCipher().toCharArray();
         char[] guessCharArray = guess.getCurrentGuess().toCharArray();
 

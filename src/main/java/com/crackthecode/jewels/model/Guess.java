@@ -30,7 +30,7 @@ public class Guess {
       throw new InvalidGuessException(String.format(INVALID_INPUT_LENGTH_MESSAGE_FORMAT,currentGuess));
     }
     String guess = currentGuess.toLowerCase();
-    if(!Pattern.compile(pool).matcher(guess).find()) {
+    if(!guess.matches(pool)) {
       throw new InvalidGuessException(String.format(INVALID_CHARACTERS_MESSAGE_FORMAT, currentGuess, pool));
     }
     if(!guessSet.add(guess)) {

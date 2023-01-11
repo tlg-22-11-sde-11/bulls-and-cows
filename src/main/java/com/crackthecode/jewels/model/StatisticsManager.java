@@ -10,14 +10,6 @@ public class StatisticsManager {
 
   private double guessSum;
 
-  //constructor (makes everything start at zero like fresh start)
-  public StatisticsManager() {
-//    loss = 0; // might need this section if default value up top is already 0??
-//    win = 0;
-//    successRate = 0;
-//    guessAvg = 0;
-//    guessSum = 0;
-  }
 
   //method (this updates the board on the outcome of each game and number of guess)
   public void playGame(boolean won, int numOfGuess) {
@@ -36,9 +28,9 @@ public class StatisticsManager {
       // array of strings representing statistics
       String[] stats = {"Wins: " + win, "Losses: " + loss,
           "Success Rate: " + String.format("%.2f", successRate * 100) + "%",
-          "Guess Average: " + String.format("%.2f", guessAvg)};
+          "Win Guess Average: " + (Double.isNaN(guessAvg) ? "N/A" : String.format("%.2f", guessAvg))};
       // join the strings with newline separator
-      return "All Time Statistics:\n" + String.join("\n", stats) +"\n";
+      return "\nAll Time Statistics:\n" + String.join("\n", stats) +"\n";
     }
 
   }

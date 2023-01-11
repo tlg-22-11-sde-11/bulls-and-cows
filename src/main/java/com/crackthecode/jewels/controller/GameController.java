@@ -40,10 +40,10 @@ public class GameController {
         input = this.input.readLine().strip();
         guess.setCurrentGuess(input);
         game.checkGuess(guess);
-        output.print(view.getGameBoard(guess, game));
+        output.print(view.getGameBoard(guess, game, cipher));
       }
       catch (InvalidGuessException e) {
-        output.printf(" Invalid Input: %s%n  Guess must be %d characters long and may only contain the following: \n %s \n ", input, Guess.GUESS_LENGTH,
+        output.printf("Invalid Input: %s%n Guess must be %d characters long and may only contain the following: %s \n ", input, Guess.GUESS_LENGTH,
           cipher.getPool());
       }
       catch (DuplicateGuessException e) {
