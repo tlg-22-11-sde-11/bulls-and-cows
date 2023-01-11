@@ -26,10 +26,10 @@ public class GameView {
       }
       if (game.isCompleted() && game.isWon()) {
         builder.append("\n")
-            .append("Congratulations! You have acquired the rarest jewels known to man. \n");
+            .append("CONGRATULATIONS! You have acquired the rarest jewels known to man! \n");
       } else if (game.isCompleted() && !game.isWon()) {
         builder.append("\n")
-            .append("Ran out of guesses! You have been caught by the authorities. The correct cipher was ")
+            .append("You ran out of guesses and have been caught by the authorities! The correct cipher was ")
             .append(cipher.getCurrentCipher())
             .append(". GAME OVER! \n");
       } else {

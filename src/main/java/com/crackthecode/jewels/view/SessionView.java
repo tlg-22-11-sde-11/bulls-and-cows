@@ -22,9 +22,10 @@ public class SessionView {
           + "Level 1 allows the following characters: %s \n     "
           + "Level 2 allows the following characters: %s \n     "
           + "Level 3 allows the following characters: %s \n "
-          + "4. A ruby is awarded when you have chosen a correct character and it is in the correct position. \n "
+          + "4. Players may receive rubies and pearls after each guess. \n     "
+          + "A ruby is awarded when you have chosen a correct character and it is in the correct position. \n     "
           + "A pearl is awarded when you have chosen a correct character but it is in the wrong position. \n "
-          + "Note:  Characters CAN be repeated. \n ";
+          + "Note: Characters CAN be repeated. Remember to press 'return'/'enter' after each input. \n ";
 
   //fields
   StatisticsManager stats;

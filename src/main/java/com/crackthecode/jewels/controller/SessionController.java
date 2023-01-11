@@ -15,7 +15,7 @@ public class SessionController {
 
   private final PrintStream output;
   private final BufferedReader input;
-  Cipher cipher;
+  private Cipher cipher;
 
   public SessionController(PrintStream output, BufferedReader input) {
     this.output = output;
@@ -26,7 +26,7 @@ public class SessionController {
     StatisticsManager stats = new StatisticsManager();
     SessionView view = new SessionView(stats);
     output.print(SessionView.GAME_STORY);
-    String input = this.input.readLine();
+    this.input.readLine();
     output.printf(SessionView.GAME_RULES, Game.MAX_NUMBER_OF_TRIES, Guess.GUESS_LENGTH,
         Cipher.LEVEL_ONE_POOL, Cipher.LEVEL_TWO_POOL, Cipher.LEVEL_THREE_POOL);
     do {
@@ -48,7 +48,11 @@ public class SessionController {
   private boolean continuePlay() throws IOException{
     output.print("\nDo you want to play again? (Y/n):");
     String input = this.input.readLine().strip().toLowerCase();
-    return input.isEmpty() || input.charAt(0) != 'n';
+    boolean playAgain = input.isEmpty() || input.charAt(0) != 'n';
+    if (!playAgain) {
+      output.print("Your choice to not play again means you have given up your life of crime. Good luck! If you change your mind, come back and play Crack the Code!");
+    }
+    return playAgain;
   }
 
   private void chooseDifficulty() throws IOException{
