@@ -50,7 +50,8 @@ public class SessionController {
     String input = this.input.readLine().strip().toLowerCase();
     boolean playAgain = input.isEmpty() || input.charAt(0) != 'n';
     if (!playAgain) {
-      output.print("Your choice to not play again means you have given up your life of crime. Good luck! If you change your mind, come back and play Crack the Code!");
+      output.print("Your choice to not play again means you have given up your life of crime. Good luck! \n"
+          + "If you change your mind, come back and play Crack the Code!");
     }
     return playAgain;
   }

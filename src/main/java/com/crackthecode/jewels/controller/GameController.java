@@ -5,7 +5,6 @@ import com.crackthecode.jewels.model.Game;
 import com.crackthecode.jewels.model.Guess;
 import com.crackthecode.jewels.model.exceptions.DuplicateGuessException;
 import com.crackthecode.jewels.model.exceptions.InvalidGuessException;
-import com.crackthecode.jewels.model.exceptions.InvalidLevelException;
 import com.crackthecode.jewels.view.GameView;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -43,7 +42,7 @@ public class GameController {
         output.print(view.getGameBoard(guess, game, cipher));
       }
       catch (InvalidGuessException e) {
-        output.printf("Invalid Input: %s%n Guess must be %d characters long and may only contain the following: %s \n ", input, Guess.GUESS_LENGTH,
+        output.printf("Invalid Input: %s%n Guess must be %d characters long and may only contain the following characters: %s \n ", input, Guess.GUESS_LENGTH,
           cipher.getPool());
       }
       catch (DuplicateGuessException e) {
