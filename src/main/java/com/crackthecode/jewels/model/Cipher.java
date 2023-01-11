@@ -34,7 +34,7 @@ public class Cipher {
 
     // methods
 
-  void assignPool() {
+  private void assignPool() {
     if (difficultyLevel == 1) {
       pool = LEVEL_ONE_POOL;
     } else if (difficultyLevel == 2) {
