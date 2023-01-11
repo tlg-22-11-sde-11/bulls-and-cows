@@ -6,7 +6,7 @@ import com.crackthecode.jewels.model.StatisticsManager;
 public class SessionView {
 
 
-  private static final String GAME_STORY = "Welcome to Crack the Code! \n"
+  public static final String GAME_STORY = "Welcome to Crack the Code! \n"
       + "You are a master of disguise who has a knack for tactically acquiring precious jewels. \n"
       + "You have come across a particularly challenging obstacle keeping you from the most precious jewel you have a encountered to date. \n"
       + "Your challenge, should you choose to accept it, will be to crack the cipher before the ____ (authorities) arrive and capture you. \n"
@@ -14,15 +14,15 @@ public class SessionView {
       + "BUT, should you fail, all the jewels you have acquired will be lost, as will life as you know it. \n"
       + "If you wish to proceed, press 'return'/'enter'. \n";
 
-  private static final String GAME_RULES =
+  public static final String GAME_RULES =
       "GAME RULES: \n 1. You have %d number of chances to crack the cipher. \n "
           + "2. Each cipher is %d characters long. \n "
           + "3. You can choose from three levels. \n "
-          + "Level 1 allows the following characters: %$s \n "
-          + "Level 2 allows the following characters: %$s \n"
-          + "Level 3 allows the following characters: %$s \n"
-          + "4. A ruby is awarded when you have chosen a correct character and it is in the correct position. %n\" +\n"
-          + "  \"A pearl is awarded when you have chosen a correct character but it is in the wrong position. \n"
+          + "Level 1 allows the following characters: %s \n "
+          + "Level 2 allows the following characters: %s \n"
+          + "Level 3 allows the following characters: %s \n"
+          + "4. A ruby is awarded when you have chosen a correct character and it is in the correct position. \n"
+          + "A pearl is awarded when you have chosen a correct character but it is in the wrong position. \n"
           + "Note:  Characters CAN be repeated. \n";
 
   //fields
