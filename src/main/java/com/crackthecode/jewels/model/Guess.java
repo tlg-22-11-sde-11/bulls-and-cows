@@ -1,5 +1,7 @@
 package com.crackthecode.jewels.model;
 
+import com.crackthecode.jewels.model.exceptions.DuplicateGuessException;
+import com.crackthecode.jewels.model.exceptions.InvalidGuessException;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -22,16 +24,16 @@ public class Guess {
     return currentGuess;
   }
 
-  public void setCurrentGuess(String currentGuess) throws IllegalArgumentException {
+  public void setCurrentGuess(String currentGuess) throws InvalidGuessException, DuplicateGuessException {
     if(currentGuess == null || currentGuess.length() != GUESS_LENGTH) {
-      throw new IllegalArgumentException(String.format(INVALID_INPUT_LENGTH_MESSAGE_FORMAT,currentGuess));
+      throw new InvalidGuessException(String.format(INVALID_INPUT_LENGTH_MESSAGE_FORMAT,currentGuess));
     }
     String guess = currentGuess.toLowerCase();
     if(!guess.matches(pool)) {
-      throw new IllegalArgumentException(String.format(INVALID_CHARACTERS_MESSAGE_FORMAT, currentGuess, pool));
+      throw new InvalidGuessException(String.format(INVALID_CHARACTERS_MESSAGE_FORMAT, currentGuess, pool));
     }
     if(!guessSet.add(guess)) {
-      throw new IllegalArgumentException(String.format(DUPLICATE_GUESS_MESSAGE_FORMAT, currentGuess));
+      throw new DuplicateGuessException(String.format(DUPLICATE_GUESS_MESSAGE_FORMAT, currentGuess));
     }
     this.currentGuess = guess;
   }

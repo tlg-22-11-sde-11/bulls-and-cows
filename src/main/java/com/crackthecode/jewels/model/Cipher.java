@@ -1,5 +1,6 @@
 package com.crackthecode.jewels.model;
 
+import com.crackthecode.jewels.model.exceptions.InvalidLevelException;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -23,9 +24,9 @@ public class Cipher {
 
    // constructors
 
-  public Cipher(int difficultyLevel) throws IllegalArgumentException {
+  public Cipher(int difficultyLevel) throws InvalidLevelException {
     if (difficultyLevel != 1 && difficultyLevel != 2 && difficultyLevel != 3) {
-      throw new IllegalArgumentException("Must choose Levels 1, 2, or 3.");
+      throw new InvalidLevelException("Must choose Levels 1, 2, or 3.");
     }
     this.difficultyLevel = difficultyLevel;
     }
