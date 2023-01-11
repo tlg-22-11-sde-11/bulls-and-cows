@@ -16,8 +16,8 @@ public class Game {
   private boolean completed;
   private boolean won;
   private int guessCounter;
-  char[] cipherCharArray;
-  char[] guessCharArray;
+  private char[] cipherCharArray;
+  private char[] guessCharArray;
 
   public Game(Cipher cipher, StatisticsManager stats) {
     this.stats = stats;
