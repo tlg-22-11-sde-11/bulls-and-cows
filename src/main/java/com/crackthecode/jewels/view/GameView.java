@@ -13,17 +13,7 @@ public class GameView {
 
   public String getGameBoard(Guess guess, Game game, Cipher cipher) {
       StringBuilder builder = new StringBuilder();
-      List<String> guesses = new ArrayList<>(guess.getGuessSet());
-      builder.append("\n")
-          .append("Guess Rubies Pearls \n");
-      for (int i = 0; i < guesses.size(); i++) {
-        builder.append(guesses.get(i))
-            .append("   ")
-            .append(game.getRuby().get(i))
-            .append("      ")
-            .append(game.getPearl().get(i))
-            .append("\n");
-      }
+      builder.append(getGuessTable(guess,game));
       if (game.isCompleted() && game.isWon()) {
         builder.append("\n")
             .append("CONGRATULATIONS! You have acquired the rarest jewels known to man! \n");
@@ -40,6 +30,22 @@ public class GameView {
             .append(Game.MAX_NUMBER_OF_TRIES - guess.getGuessSet().size())
             .append("\n")
             .append("\n");
+    }
+    return builder.toString();
+  }
+
+  private String getGuessTable(Guess guess, Game game) {
+    StringBuilder builder = new StringBuilder();
+    List<String> guesses = new ArrayList<>(guess.getGuessSet());
+    builder.append("\n")
+        .append("Guess Rubies Pearls \n");
+    for (int i = 0; i < guesses.size(); i++) {
+      builder.append(guesses.get(i))
+          .append("   ")
+          .append(game.getRuby().get(i))
+          .append("      ")
+          .append(game.getPearl().get(i))
+          .append("\n");
     }
     return builder.toString();
   }
