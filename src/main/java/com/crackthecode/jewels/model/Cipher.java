@@ -29,6 +29,7 @@ public class Cipher {
       throw new InvalidLevelException("Must choose Levels 1, 2, or 3.");
     }
     this.difficultyLevel = difficultyLevel;
+    assignPool();
     }
 
     // methods

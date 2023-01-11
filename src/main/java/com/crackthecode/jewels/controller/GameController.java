@@ -34,13 +34,13 @@ public class GameController {
 
   public void playGame() throws IOException {
     do {
-      output.printf("Enter Guess: ");
+      output.print("Enter Guess: ");
       String input = null;
       try {
         input = this.input.readLine().strip();
         guess.setCurrentGuess(input);
         game.checkGuess(guess);
-        view.getGameBoard(guess, game);
+        output.print(view.getGameBoard(guess, game));
       }
       catch (InvalidGuessException e) {
         output.printf(" Invalid Input: %s%n  Guess must be %d characters long and may only contain the following: \n %s \n ", input, Guess.GUESS_LENGTH,

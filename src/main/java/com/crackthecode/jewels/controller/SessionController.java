@@ -24,7 +24,7 @@ public class SessionController {
   public void run() throws IOException {
     StatisticsManager stats = new StatisticsManager();
     SessionView view = new SessionView(stats);
-    output.printf(SessionView.GAME_STORY);
+    output.print(SessionView.GAME_STORY);
     String input = this.input.readLine();
     output.printf(SessionView.GAME_RULES, Game.MAX_NUMBER_OF_TRIES, Guess.GUESS_LENGTH,
         Cipher.LEVEL_ONE_POOL, Cipher.LEVEL_TWO_POOL, Cipher.LEVEL_THREE_POOL);
@@ -38,6 +38,8 @@ public class SessionController {
       output.printf(" Invalid Input: %s%n  Level must be '1', '2', or '3' \n ", input);
     }
     do {
+      assert cipher != null;
+      cipher.generateCipher();
       //DONE: new game
       Game game = new Game(cipher, stats);
       //DONE: new guess
@@ -47,7 +49,7 @@ public class SessionController {
       //DONE:  new game controller
       GameController gameController = new GameController(game, guess, cipher, gameView, output, this.input);
       gameController.playGame();
-      view.getStats();
+      output.print(view.getStats());
     }while (continuePlay());
 
   }
