@@ -16,7 +16,8 @@ public class Game {
   private boolean completed;
   private boolean won;
   private int guessCounter;
-
+  private char[] cipherCharArray;
+  private char[] guessCharArray;
 
   public Game(Cipher cipher, StatisticsManager stats) {
     this.stats = stats;
@@ -25,7 +26,9 @@ public class Game {
 
   public void checkGuess(Guess guess) {
     if (guessCounter < MAX_NUMBER_OF_TRIES) {
-      int rubyTracker = 0;
+      cipherCharArray = cipher.getCurrentCipher().toCharArray();
+      guessCharArray = guess.getCurrentGuess().toCharArray();
+      int rubyTracker;
       int pearlTracker = 0;
       guessCounter++;
       if (cipher.getCurrentCipher().equals(guess.getCurrentGuess())) {
@@ -35,11 +38,9 @@ public class Game {
         if(guessCounter == 15) {
           updateGameStats(false, guessCounter);
         }
-        char[] cipherCharArray = cipher.getCurrentCipher().toCharArray();
-        char[] guessCharArray = guess.getCurrentGuess().toCharArray();
 
-        rubyTracker = getRubyTracker(rubyTracker, cipherCharArray, guessCharArray);
-        pearlTracker = getPearlTracker(pearlTracker, cipherCharArray, guessCharArray);
+        rubyTracker = updateRubyTracker();
+        pearlTracker = updatePearlTracker();
       }
       ruby.add(rubyTracker);
       pearl.add(pearlTracker);
@@ -54,19 +55,22 @@ public class Game {
     stats.playGame(won, guessCounter);
   }
 
-  private int getPearlTracker(int pearlTracker, char[] cipherCharArray, char[] guessCharArray) {
-    for(char guessChar : guessCharArray) {
-      for(int i = 0; i < Guess.GUESS_LENGTH; i++) {
-        if(guessChar == cipherCharArray[i]) {
+  private int updatePearlTracker() {
+    int pearlTracker = 0;
+    for(int i = 0; i < Guess.GUESS_LENGTH; i++) {
+      for(int j = 0; j < Guess.GUESS_LENGTH; j++) {
+        if(guessCharArray[i] == cipherCharArray[j]) {
           pearlTracker++;
-          cipherCharArray[i] = CIPHER_PLACEHOLDER_CHARACTER;
+          cipherCharArray[j] = CIPHER_PLACEHOLDER_CHARACTER;
+          guessCharArray[i] = GUESS_PLACEHOLDER_CHARACTER;
         }
       }
     }
     return pearlTracker;
   }
 
-  private int getRubyTracker(int rubyTracker, char[] cipherCharArray, char[] guessCharArray) {
+  private int updateRubyTracker() {
+    int rubyTracker = 0;
     for(int i = 0; i < Guess.GUESS_LENGTH; i++) {
       if(cipherCharArray[i] == guessCharArray[i]) {
         rubyTracker++;
