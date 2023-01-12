@@ -22,6 +22,7 @@ public class SessionController {
     this.input = input;
   }
 
+
   public void run() throws IOException {
     StatisticsManager stats = new StatisticsManager();
     SessionView view = new SessionView(stats);
@@ -32,31 +33,30 @@ public class SessionController {
     do {
       chooseDifficulty();
       cipher.generateCipher();
-      //DONE: new game
       Game game = new Game(cipher, stats);
-      //DONE: new guess
-      Guess guess = new Guess(cipher); 
-      //DONE: new game view
-      GameView gameView= new GameView();
-      //DONE:  new game controller
-      GameController gameController = new GameController(game, guess, cipher, gameView, output, this.input);
+      Guess guess = new Guess(cipher);
+      GameView gameView = new GameView();
+      GameController gameController = new GameController(game, guess, cipher, gameView, output,
+          this.input);
       gameController.playGame();
       output.print(view.getStats());
-    }while (continuePlay());
+    } while (continuePlay());
 
   }
-  private boolean continuePlay() throws IOException{
+
+  private boolean continuePlay() throws IOException {
     output.print("\nDo you want to play again? (Y/n):");
     String input = this.input.readLine().strip().toLowerCase();
     boolean playAgain = input.isEmpty() || input.charAt(0) != 'n';
     if (!playAgain) {
-      output.print("Your choice to not play again means you have given up your life of crime. Good luck! \n"
-          + "If you change your mind, come back and play Crack the Code!");
+      output.print(
+          "\nYour choice to not play again means you have given up your life of crime. Good luck! \n"
+              + "If you change your mind, come back and play Crack the Code!");
     }
     return playAgain;
   }
 
-  private void chooseDifficulty() throws IOException{
+  private void chooseDifficulty() throws IOException {
     int difficultyLevel = 0;
     String input = null;
     do {

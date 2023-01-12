@@ -31,7 +31,7 @@ public class SessionView {
   //fields
   StatisticsManager stats;
 
-//constructor
+  //constructor
   public SessionView(StatisticsManager stats) {
     this.stats = stats;
   }

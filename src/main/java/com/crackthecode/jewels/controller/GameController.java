@@ -40,14 +40,16 @@ public class GameController {
         guess.setCurrentGuess(input);
         game.checkGuess(guess);
         output.print(view.getGameBoard(guess, game, cipher));
+      } catch (InvalidGuessException e) {
+        output.printf(
+            "Invalid Input: %s%n Guess must be %d characters long and may only contain the following characters: %s \n ",
+            input, Guess.GUESS_LENGTH,
+            cipher.getPool());
+      } catch (DuplicateGuessException e) {
+        output.printf(
+            " Invalid Input: %s%n You already tried this guess in this game. Guess something different. \n ",
+            input);
       }
-      catch (InvalidGuessException e) {
-        output.printf("Invalid Input: %s%n Guess must be %d characters long and may only contain the following characters: %s \n ", input, Guess.GUESS_LENGTH,
-          cipher.getPool());
-      }
-      catch (DuplicateGuessException e) {
-        output.printf(" Invalid Input: %s%n You already tried this guess in this game. Guess something different. \n ", input);
-      }
-    }while (!game.isCompleted());
+    } while (!game.isCompleted());
   }
 }
