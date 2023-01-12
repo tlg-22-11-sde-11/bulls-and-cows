@@ -20,8 +20,8 @@ public class SessionView {
 
   public static final String GAME_RULES =
       "GAME RULES: \n "
-          + "1. You have %d chances to crack the cipher. \n "
-          + "2. Each cipher is %d characters long. \n "
+          + "1. Each cipher is %d characters long. \n "
+          + "2. You have %d chances to crack the cipher. \n "
           + "3. You can choose from three levels. \n     "
           + "Level 1 allows the following characters: %s \n     "
           + "Level 2 allows the following characters: %s \n     "
