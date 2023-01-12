@@ -5,24 +5,21 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-public class Cipher {
+/**
+ * <strong>Cipher</strong> class (or the code) stores and generates ciphers.
+ */
 
-  //Constants
+public class Cipher {
 
   public static final String LEVEL_ONE_POOL = "0123456789";
   public static final String LEVEL_TWO_POOL = "abcdefghijklmnopqrstuvwxyz";
   public static final String LEVEL_THREE_POOL = "0123456789abcdefghijklmnopqrstuvwxyz";
   private final Set<String> sessionCipherSet = new HashSet<>();
 
-  //fields
-
   private final int difficultyLevel;
   private String currentCipher;
   private String pool;
 
-
-
-   // constructors
 
   public Cipher(int difficultyLevel) throws InvalidLevelException {
     if (difficultyLevel != 1 && difficultyLevel != 2 && difficultyLevel != 3) {
@@ -30,9 +27,8 @@ public class Cipher {
     }
     this.difficultyLevel = difficultyLevel;
     assignPool();
-    }
+  }
 
-    // methods
 
   private void assignPool() {
     if (difficultyLevel == 1) {
@@ -44,30 +40,39 @@ public class Cipher {
     }
   }
 
-    public void generateCipher() {
+  /**
+   * <p>This method generates the cipher at random from a pool of characters (numbers and English
+   * letters).</p>
+   */
+  public void generateCipher() {
 
-      do {
-        this.currentCipher = getRandomCharacter() + getRandomCharacter() +
-            getRandomCharacter() + getRandomCharacter() + getRandomCharacter();
-      }
-      while (!sessionCipherSet.add(currentCipher));
+    do {
+      this.currentCipher = getRandomCharacter() + getRandomCharacter() +
+          getRandomCharacter() + getRandomCharacter() + getRandomCharacter();
     }
+    while (!sessionCipherSet.add(currentCipher));
+  }
 
 
-  // getters and setters
-
-
+  /**
+   * <p> The method gets the current cipher. This is what the code is for the current game that
+   * needs to be guessed by user.</p>
+   *
+   * @return currentCipher
+   */
   public String getCurrentCipher() {
     return currentCipher;
   }
 
+
+  /**
+   * <p> The method gets the pool of characters used to generate the current game cipher.</p>
+   *
+   * @return pool
+   */
   public String getPool() {
     return pool;
   }
-
-
-
-  // helper methods
 
   private String getRandomCharacter() {
     Random rnd = new Random();
