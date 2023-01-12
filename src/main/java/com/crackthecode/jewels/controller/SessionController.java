@@ -71,7 +71,7 @@ public class SessionController {
     int difficultyLevel;
     String input = null;
     do {
-      output.println("\nChoose Difficulty Level (1, 2, or 3): \n");
+      output.println("\nChoose Difficulty Level (1, 2, or 3):");
       try {
         input = this.input.readLine().strip();
         difficultyLevel = Integer.parseInt(input);
