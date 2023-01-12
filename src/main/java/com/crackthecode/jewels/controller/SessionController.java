@@ -57,14 +57,18 @@ public class SessionController {
   }
 
   private void chooseDifficulty() throws IOException{
-    output.println("\nChoose Difficulty Level (1, 2, or 3): ");
-    try {
-      String input = this.input.readLine().strip();
-      int difficultyLevel = Integer.parseInt(input);
-      cipher = new Cipher(difficultyLevel);
-    } catch (InvalidLevelException e) {
-      output.printf(" Invalid Input: %s%n  Level must be '1', '2', or '3' \n ", input);
-    }
+    int difficultyLevel = 0;
+    String input = null;
+    do {
+      output.println("\nChoose Difficulty Level (1, 2, or 3): ");
+      try {
+        input = this.input.readLine().strip();
+        difficultyLevel = Integer.parseInt(input);
+        cipher = new Cipher(difficultyLevel);
+      } catch (InvalidLevelException | NumberFormatException e) {
+        output.printf("Invalid Input: %s%nLevel must be '1', '2', or '3' \n ", input);
+      }
+    } while (cipher == null);
   }
 }
 
