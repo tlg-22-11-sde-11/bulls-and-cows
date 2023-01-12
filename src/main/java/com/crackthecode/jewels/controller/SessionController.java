@@ -39,7 +39,7 @@ public class SessionController {
     SessionView view = new SessionView(stats);
     output.print(SessionView.GAME_STORY);
     this.input.readLine();
-    output.printf(SessionView.GAME_RULES, Game.MAX_NUMBER_OF_TRIES, Guess.GUESS_LENGTH,
+    output.printf(SessionView.GAME_RULES, Guess.GUESS_LENGTH, Game.MAX_NUMBER_OF_TRIES,
         Cipher.LEVEL_ONE_POOL, Cipher.LEVEL_TWO_POOL, Cipher.LEVEL_THREE_POOL);
     do {
       chooseDifficulty();
@@ -71,13 +71,13 @@ public class SessionController {
     int difficultyLevel;
     String input = null;
     do {
-      output.println("\nChoose Difficulty Level (1, 2, or 3): ");
+      output.println("\nChoose Difficulty Level (1, 2, or 3):");
       try {
         input = this.input.readLine().strip();
         difficultyLevel = Integer.parseInt(input);
         cipher = new Cipher(difficultyLevel);
       } catch (InvalidLevelException | NumberFormatException e) {
-        output.printf("Invalid Input: %s%nLevel must be '1', '2', or '3' \n ", input);
+        output.printf("Invalid Input: %s%nLevel must be '1', '2', or '3' ", input);
       }
     } while (cipher == null);
   }

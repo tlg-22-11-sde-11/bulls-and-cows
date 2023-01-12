@@ -43,7 +43,7 @@ public class GameController {
 
   public void playGame() throws IOException {
     do {
-      output.print("Enter Guess: ");
+      output.print("\nEnter Guess: ");
       String input = null;
       try {
         input = this.input.readLine().strip();
