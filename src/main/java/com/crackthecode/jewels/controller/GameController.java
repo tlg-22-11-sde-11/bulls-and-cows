@@ -10,6 +10,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
 
+/**
+ * <strong>GameController</strong> class controls the game and user input.
+ */
+
 public class GameController {
 
   private final Game game;
@@ -30,6 +34,12 @@ public class GameController {
     this.output = output;
     this.input = input;
   }
+
+  /**
+   * <p> This method starts game play, handles user input, and handles potential exceptions that
+   * could occur in the game. </p>
+   * @throws IOException Unable to read user input; unable to continue
+   */
 
   public void playGame() throws IOException {
     do {

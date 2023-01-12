@@ -11,6 +11,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
 
+/**
+ * <strong>SessionController</strong> class controls input and output for the entire session
+ * and handles exceptions that occur before the game is initialized.
+ */
+
 public class SessionController {
 
   private final PrintStream output;
@@ -22,6 +27,12 @@ public class SessionController {
     this.input = input;
   }
 
+  /**
+   * <p> This method initializes requirements for the game to run and displays the
+   * String representation of the Session View and Game View. Allows user to play as many times as
+   * desired. </p>
+   * @throws IOException Unable to read user input; unable to continue
+   */
 
   public void run() throws IOException {
     StatisticsManager stats = new StatisticsManager();
@@ -57,7 +68,7 @@ public class SessionController {
   }
 
   private void chooseDifficulty() throws IOException {
-    int difficultyLevel = 0;
+    int difficultyLevel;
     String input = null;
     do {
       output.println("\nChoose Difficulty Level (1, 2, or 3): ");

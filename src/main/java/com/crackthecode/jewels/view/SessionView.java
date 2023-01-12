@@ -2,6 +2,10 @@ package com.crackthecode.jewels.view;
 
 import com.crackthecode.jewels.model.StatisticsManager;
 
+/**
+ * <strong>SessionView</strong> class provides the introduction to the game, the game rules, and a
+ * way to view the player's stats.
+ */
 
 public class SessionView {
 
@@ -28,13 +32,15 @@ public class SessionView {
           + "You will not know which character returned the ruby and which character returned the pearl. \n "
           + "Note: Characters CAN be repeated. Remember to press 'return'/'enter' after each input. \n ";
 
-  //fields
   StatisticsManager stats;
 
-  //constructor
   public SessionView(StatisticsManager stats) {
     this.stats = stats;
   }
+  /**
+   * <p> The method returns a String representation of all stats from the current session.</p>
+   * @return stats.toString()
+   */
 
   public String getStats() {
     return stats.toString();
